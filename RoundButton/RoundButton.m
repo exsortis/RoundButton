@@ -3,13 +3,12 @@
 //  RoundButton
 //
 //  Created by Paul Schifferer on 4/28/13.
-//  Copyright (c) 2013 Pilgrimage Software. All rights reserved.
+//  Copyright (c) 2017 Pilgrimage Software. All rights reserved.
 //
 
 #import "RoundButton.h"
 
 #import <QuartzCore/QuartzCore.h>
-//#import "FXBlurView.h"
 
 
 #define GRADIENT1_VALUE (0.96f)
@@ -22,13 +21,12 @@
 @private
     CAGradientLayer* _gradientLayer;
     CALayer* _containerLayer;
-    //    FXBlurView* _blurView;
     UIImageView* _imageView;
 }
 
 @dynamic image;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if(self) {
         [self setup];
@@ -37,7 +35,7 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (instancetype)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if(self) {
         [self setup];
@@ -46,7 +44,7 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
         [self setup];
@@ -120,7 +118,7 @@
 
 - (void)layoutSubviews {
 
-    CGFloat radius = roundf(self.frame.size.width / 2.0f);
+    CGFloat radius = self.frame.size.width / 2.0f;
     self.layer.cornerRadius = radius;
     _containerLayer.cornerRadius = radius;
     _gradientLayer.cornerRadius = radius;
@@ -132,15 +130,15 @@
     //    _blurView.frame = self.bounds;
     _containerLayer.frame = self.bounds;
     _containerLayer.shadowPath = CGPathCreateWithEllipseInRect(self.bounds, NULL);
-    CGRect imageFrame = CGRectInset(self.bounds, 2, 2);
+    CGRect imageFrame = CGRectInset(self.bounds, 1.8f, 1.8f);
     _imageView.frame = imageFrame;
 }
 
-- (UIImage *)image {
+- (nullable UIImage *)image {
     return _imageView.image;
 }
 
-- (void)setImage:(UIImage *)image {
+- (void)setImage:(nullable UIImage *)image {
     _imageView.image = image;
 }
 
