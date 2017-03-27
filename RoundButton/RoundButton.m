@@ -106,7 +106,7 @@
     _imageView = [UIImageView new];
     _imageView.backgroundColor = [UIColor clearColor];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
-    _imageView.layer.cornerRadius = 5;
+//    _imageView.layer.cornerRadius = 5;
     _imageView.layer.masksToBounds = YES;
 
     [_containerLayer addSublayer:_imageView.layer];
@@ -118,7 +118,7 @@
 
 - (void)layoutSubviews {
 
-    CGFloat radius = self.frame.size.width / 2.0f;
+    CGFloat radius = roundf(self.frame.size.width / 2.0f);
     self.layer.cornerRadius = radius;
     _containerLayer.cornerRadius = radius;
     _gradientLayer.cornerRadius = radius;
@@ -130,8 +130,9 @@
     //    _blurView.frame = self.bounds;
     _containerLayer.frame = self.bounds;
     _containerLayer.shadowPath = CGPathCreateWithEllipseInRect(self.bounds, NULL);
-    CGRect imageFrame = CGRectInset(self.bounds, 1.8f, 1.8f);
+    CGRect imageFrame = CGRectInset(self.bounds, 2.0f, 2.0f);
     _imageView.frame = imageFrame;
+    _imageView.layer.cornerRadius = roundf(imageFrame.size.width / 2.0f);
 }
 
 - (nullable UIImage *)image {
