@@ -1,4 +1,3 @@
 language: objective-c
 script:
   - xctool -project RoundButton.xcodeproj -scheme RoundButton -sdk iphonesimulator clean build test
-  - xctool -project RoundButton.xcodeproj -scheme RoundButton clean build test
