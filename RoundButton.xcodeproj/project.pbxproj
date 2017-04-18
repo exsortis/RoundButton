@@ -25,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B2602231EA675D300FAFE3A /* RoundButton.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = RoundButton.podspec; sourceTree = SOURCE_ROOT; };
 		5B73607E1BE66485002B58CD /* RoundButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RoundButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7360831BE66485002B58CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B7360881BE66485002B58CD /* RoundButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoundButtonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +76,7 @@
 		5B7360801BE66485002B58CD /* RoundButton */ = {
 			isa = PBXGroup;
 			children = (
+				5B2602231EA675D300FAFE3A /* RoundButton.podspec */,
 				5B7360831BE66485002B58CD /* Info.plist */,
 				5B7360981BE664EB002B58CD /* RoundButton-umbrella.h */,
 				5B7360991BE664EB002B58CD /* RoundButton.h */,
