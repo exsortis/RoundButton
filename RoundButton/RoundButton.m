@@ -22,6 +22,7 @@
     CAGradientLayer* _gradientLayer;
     CALayer* _containerLayer;
     UIImageView* _imageView;
+    CATextLayer* _badgeLayer;
 }
 
 @dynamic image;
@@ -110,6 +111,10 @@
     _imageView.layer.masksToBounds = YES;
 
     [_containerLayer addSublayer:_imageView.layer];
+
+    _badgeLayer = [CATextLayer layer];
+    _badgeLayer.opaque = NO;
+    _badgeLayer.masksToBounds = YES;
 }
 
 - (BOOL)isOpaque {
@@ -133,6 +138,22 @@
     CGRect imageFrame = CGRectInset(self.bounds, 2.0f, 2.0f);
     _imageView.frame = imageFrame;
     _imageView.layer.cornerRadius = roundf(imageFrame.size.width / 2.0f);
+
+    if(_showBadge) {
+        NSString* text = [NSString stringWithFormat:@"%ld", (long)_badge];
+        _badgeLayer.backgroundColor = _badgeColor.CGColor;
+        CGFloat badgeSideLength = self.frame.size.width / 4.0f;
+        CGFloat badgeX = self.frame.size.width - badgeSideLength - 5.0f;
+        CGFloat badgeY = self.frame.size.width - badgeSideLength - 5.0f;
+        _badgeLayer.frame = CGRectMake(badgeX, badgeY, badgeSideLength, badgeSideLength);
+        _badgeLayer.cornerRadius = roundf(badgeSideLength / 2.0f);
+        _badgeLayer.contents = text;
+
+        [self.layer addSublayer:_badgeLayer];
+    }
+    else {
+        [_badgeLayer removeFromSuperlayer];
+    }
 }
 
 - (nullable UIImage *)image {
@@ -141,6 +162,16 @@
 
 - (void)setImage:(nullable UIImage *)image {
     _imageView.image = image;
+}
+
+- (void)setBadge:(NSInteger)badge {
+    _badge = badge;
+    [self setNeedsLayout];
+}
+
+- (void)setShowBadge:(BOOL)showBadge {
+    _showBadge = showBadge;
+    [self setNeedsLayout];
 }
 
 - (void)setEnabled:(BOOL)enabled {

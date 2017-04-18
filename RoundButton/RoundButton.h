@@ -13,5 +13,8 @@ IB_DESIGNABLE
 @interface RoundButton : UIControl
 
 @property (nonatomic, nullable, retain) IBInspectable UIImage* image;
+@property (nonatomic, assign) IBInspectable BOOL showBadge;
+@property (nonatomic, assign) IBInspectable NSInteger badge;
+@property (nonatomic, nullable, retain) IBInspectable UIColor* badgeColor;
 
 @end
