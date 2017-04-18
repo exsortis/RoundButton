@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RoundButton"
-  s.version      = "1.0.1"
+  s.version      = "1.1"
   s.summary      = "A round, framed button"
 
   s.description  = <<-DESC
@@ -11,11 +11,11 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
   s.author             = { "Paul Schifferer" => "paul@schifferers.net" }
-  s.social_media_url   = "http://twitter.com/paulyhedral"
+  s.social_media_url   = "https://twitter.com/paulyhedral"
 
   s.platform     = :ios, "8.0"
-
   s.source       = { :git => "https://github.com/exsortis/RoundButton.git", :tag => s.version.to_s }
+
   s.source_files  = "RoundButton/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
