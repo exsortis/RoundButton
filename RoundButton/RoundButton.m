@@ -8,7 +8,7 @@
 
 #import "RoundButton.h"
 
-#import <QuartzCore/QuartzCore.h>
+@import QuartzCore;
 
 
 #define GRADIENT1_VALUE (0.96f)
@@ -22,6 +22,7 @@
     CAGradientLayer* _gradientLayer;
     CALayer* _containerLayer;
     UIImageView* _imageView;
+    UILabel* _textLabel;
     CATextLayer* _badgeLayer;
 }
 
@@ -107,7 +108,7 @@
     _imageView = [UIImageView new];
     _imageView.backgroundColor = [UIColor clearColor];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    _imageView.layer.cornerRadius = 5;
+    //    _imageView.layer.cornerRadius = 5;
     _imageView.layer.masksToBounds = YES;
 
     [_containerLayer addSublayer:_imageView.layer];
@@ -115,6 +116,11 @@
     _badgeLayer = [CATextLayer layer];
     _badgeLayer.opaque = NO;
     _badgeLayer.masksToBounds = YES;
+
+    _textLabel = [UILabel new];
+    _textLabel.backgroundColor = [UIColor clearColor];
+    _textLabel.contentMode = UIViewContentModeCenter;
+    _textLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (BOOL)isOpaque {
@@ -138,6 +144,32 @@
     CGRect imageFrame = CGRectInset(self.bounds, 2.0f, 2.0f);
     _imageView.frame = imageFrame;
     _imageView.layer.cornerRadius = roundf(imageFrame.size.width / 2.0f);
+
+    if(_text) {
+        _textLabel.text = _text;
+        _textLabel.frame = imageFrame;
+        _textLabel.layer.cornerRadius = roundf(imageFrame.size.width / 2.0f);
+
+        CGFloat fontSize = self.frame.size.height - 6.0f;
+        if(_textFontName) {
+            _textLabel.font = [UIFont fontWithName:_textFontName size:fontSize];
+        }
+        else {
+            _textLabel.font = [UIFont systemFontOfSize:fontSize];
+        }
+
+        if(_textColor) {
+            _textLabel.textColor = _textColor;
+        }
+        else {
+            _textLabel.textColor = [UIColor blackColor];
+        }
+
+        [self addSubview:_textLabel];
+    }
+    else {
+        [_textLabel removeFromSuperview];
+    }
 
     if(_showBadge) {
         NSString* text = [NSString stringWithFormat:@"%ld", (long)_badge];
@@ -250,7 +282,7 @@
                              self.layer.transform = CATransform3DIdentity;
                          }];
     }
-    
+
     [super touchesMoved:touches
               withEvent:event];
 }
