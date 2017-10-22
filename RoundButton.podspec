@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RoundButton"
-  s.version      = "1.2"
+  s.version      = "1.2.0.1"
   s.summary      = "A round, framed button"
 
   s.description  = <<-DESC
